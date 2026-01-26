@@ -17,3 +17,19 @@ I am a National Champion Artistic Roller Skater. Like the ice skaters but on old
 
 ## Find Me
 - 📫 Right here on GitHub!
+
+#### Week 2: AI Tools & First Collaborations
+**Date**: [1/19-1/25/2026]
+
+**What I learned this week:**
+- [I learned that each AI tool has a different style and users need to be selective of which tool they want to use for which project.]
+- [Prompt engineering is similar to speaking with people. It is not what you say but how you say it. You need to be specific enough without bogging down details and broad enough to gather appropriate information.]
+- [AI cannot do it all. Even machines need rest breaks.]
+
+**What challenged me:**
+- [Programming language and using github. I am a nurse and an educator. I only know about programming what they show on TV. And working in healthcare, I know that what they show on TV is not the same in real-life. I am humbled by my lack of knowledge in this area and I struggle not being the content expert.]
+
+**What I'm proud of:**
+- [One of my pages worked. I am not sure how I did it but it presented pretty instead of with all the code. I guess my goal next week is to have two pages work. This is hard for me as I am an overachiever.]
+**Questions I still have:**
+- [Is there an AI for dummies? or remedial AI?]
