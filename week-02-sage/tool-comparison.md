@@ -55,3 +55,10 @@ As a new AI user, I was surprised at the options presented after the initial req
 **Tool**: [Choice of tool would depend on what the request would be. I like Claude's creativity and the explanations provided in the table. Gemini has expanded learning plan in the prompt provided would need to compare another learning plan. I like that Gemini highlighted the keywords in the table. ChatGPT also has a place with the learning plan but I did not care for the table or creativity of ChatGPT.]  
 **Reasoning**: [I guess I am not convinced that one is better than the others. I would definitely explore each of them with the same prompt and use the pieces from each that would work in my projects.]  
 **Backup Plan**: [With three or more AI tools at my fingertips, I do not think that rate limits will be an issue. Learning to write smart prompts that have a focused enough request that can be narrowed in 5 or less alterations would hoefully meet my needs. If not, take a break. Sometimes you need to step away and think about what you are asking. The time reflecting on your request may click the last piece you need.]
+
+## Week 3 Update
+## What Changed Since Last Week
+[I primarily used Claude for this week. I want to explore each serrvice as we go through the modules. I did ask ChatGPT to help me with prompts and ran them through Claude to produce the responses. I did not attach the  informatino of resources from the texts used in my course. When using the AI tool attached to the publisher, i have the option to select which texts to pull information from. SAGE was helpful and the slide decks were useful.]
+
+## Rate Limit Experience
+[I did hit limits with Claude. I decided that reaching the limit meant I was ready for a break. I stopped for the day because my brain was done. If I was not done for the day I would switch to ChatGPT and keep working. I use the results as a framework and perform edits and corrections. Their voices may be different even with the helper profile. ] 
