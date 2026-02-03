@@ -93,3 +93,18 @@ for a college student.
 
 ## What I'll Use SAGE For Going Forward
 [I need to develop better prompts to get SAGE to do what I want. I have used other services and been able to upload my notes to assist in creating specific study tools and slide decks. I hope that I will be able to do the same with SAGE. Practice makes progress.]
+
+#### Week 2: Building My SAGE Assistant
+**Date**: [1/28/2026-2/3/20206]
+
+**What I built:** [I built an assistant to help me create lecture materials that were easy to use in the classroom and to explain complex health concepts to nursing students.]
+
+**What I learned about prompt engineering:**
+- [To be specific about the level of detail needed]
+- [I still need to review material prior to presenting and ensure facts are correct.]
+
+**What challenged me:** [I felt that I was explaining things to toddler, asking for specific thinkgs and then being upset with the outcome because I left something out that I needed. Prompt writing is challenging and I hope to nail down specific thinkgs to ask the first time because I hate doings things over because I did not do it right the first time.]
+
+**What I'm proud of:** [I did create a slide deck that I intend to use this week. I hope it goes well.]
+
+**Questions I still have:** [Should I have taken a programming language course prior to this one to better understand what is going on in Github?]
