@@ -3,7 +3,7 @@ Last updated: [2/1/2026]
 
 ## Learning & Studying
 
-### 1. [Intorduction to material]
+### 1. [Introduction to material]
 **Prompt:** [Explain [the 4 types of shock] to me step by step as if I’m learning it for the first time. Use simple language, real-world examples, and analogies. Afterward, ask me 3 questions to check my understanding and explain the answers.
 **Use this when:** [Being exposed to new content and want to find out what I know about the topic before doing a deep dive.]
 **Works best with:** [Any but focus on using the AI generator that comes with the products the school is using to teach the material]
