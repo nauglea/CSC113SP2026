@@ -1,0 +1,781 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Aptos;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:12.0pt;
+	font-family:"Aptos",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>&lt;!DOCTYPE html&gt;</p>
+
+<p class=MsoNormal>&lt;html lang=&quot;en&quot;&gt;</p>
+
+<p class=MsoNormal>&lt;head&gt;</p>
+
+<p class=MsoNormal>    &lt;meta charset=&quot;UTF-8&quot;&gt;</p>
+
+<p class=MsoNormal>    &lt;meta name=&quot;viewport&quot;
+content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</p>
+
+<p class=MsoNormal>    &lt;title&gt;Protein Planner | Veg &amp;
+Pescatarian&lt;/title&gt;</p>
+
+<p class=MsoNormal>    &lt;script
+src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;</p>
+
+<p class=MsoNormal>    &lt;style&gt;</p>
+
+<p class=MsoNormal>        @import
+url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap');</p>
+
+<p class=MsoNormal>        body { font-family: 'Inter', sans-serif;
+background-color: #f8fafc; }</p>
+
+<p class=MsoNormal>        .protein-card { transition: all 0.2s ease; }</p>
+
+<p class=MsoNormal>        .protein-card:hover { transform: translateY(-2px); }</p>
+
+<p class=MsoNormal>    &lt;/style&gt;</p>
+
+<p class=MsoNormal>&lt;/head&gt;</p>
+
+<p class=MsoNormal>&lt;body class=&quot;p-4 md:p-8&quot;&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    &lt;div class=&quot;max-w-4xl mx-auto&quot;&gt;</p>
+
+<p class=MsoNormal>        &lt;header class=&quot;mb-8 flex flex-col
+md:flex-row md:items-end justify-between gap-4&quot;&gt;</p>
+
+<p class=MsoNormal>            &lt;div&gt;</p>
+
+<p class=MsoNormal>                &lt;h1 class=&quot;text-3xl font-bold
+text-slate-900 tracking-tight&quot;&gt;Protein Planner &lt;span
+class=&quot;text-sm font-normal text-slate-500 ml-2&quot;&gt;MVP
+v1&lt;/span&gt;&lt;/h1&gt;</p>
+
+<p class=MsoNormal>                &lt;p
+class=&quot;text-slate-600&quot;&gt;Vegetarian &amp; Pescatarian Daily Target:
+80–100g&lt;/p&gt;</p>
+
+<p class=MsoNormal>            &lt;/div&gt;</p>
+
+<p class=MsoNormal>            </p>
+
+<p class=MsoNormal>            &lt;div id=&quot;progress-container&quot;
+class=&quot;bg-white p-4 rounded-xl shadow-sm border border-slate-200
+min-w-[200px]&quot;&gt;</p>
+
+<p class=MsoNormal>                &lt;div class=&quot;flex justify-between
+items-center mb-2&quot;&gt;</p>
+
+<p class=MsoNormal>                    &lt;span class=&quot;text-sm
+font-semibold text-slate-700&quot;&gt;Daily Total&lt;/span&gt;</p>
+
+<p class=MsoNormal>                    &lt;span id=&quot;total-display&quot;
+class=&quot;text-2xl font-bold text-slate-900&quot;&gt;0g&lt;/span&gt;</p>
+
+<p class=MsoNormal>                &lt;/div&gt;</p>
+
+<p class=MsoNormal>                &lt;div class=&quot;w-full bg-slate-100
+rounded-full h-3 overflow-hidden&quot;&gt;</p>
+
+<p class=MsoNormal>                    &lt;div id=&quot;progress-bar&quot;
+class=&quot;bg-yellow-400 h-full transition-all duration-500&quot;
+style=&quot;width: 0%&quot;&gt;&lt;/div&gt;</p>
+
+<p class=MsoNormal>                &lt;/div&gt;</p>
+
+<p class=MsoNormal>                &lt;p id=&quot;status-message&quot;
+class=&quot;text-xs mt-2 font-medium text-slate-500 uppercase tracking-wider
+text-center&quot;&gt;Under Target&lt;/p&gt;</p>
+
+<p class=MsoNormal>            &lt;/div&gt;</p>
+
+<p class=MsoNormal>        &lt;/header&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        &lt;div class=&quot;grid grid-cols-1 lg:grid-cols-3
+gap-8&quot;&gt;</p>
+
+<p class=MsoNormal>            </p>
+
+<p class=MsoNormal>            &lt;div class=&quot;lg:col-span-2
+space-y-6&quot;&gt;</p>
+
+<p class=MsoNormal>                &lt;div id=&quot;meal-slots&quot;
+class=&quot;space-y-4&quot;&gt;</p>
+
+<p class=MsoNormal>                    &lt;/div&gt;</p>
+
+<p class=MsoNormal>            &lt;/div&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>            &lt;div class=&quot;space-y-6&quot;&gt;</p>
+
+<p class=MsoNormal>                &lt;div id=&quot;gap-panel&quot;
+class=&quot;bg-indigo-50 border border-indigo-100 p-5 rounded-2xl
+hidden&quot;&gt;</p>
+
+<p class=MsoNormal>                    &lt;h3 class=&quot;text-indigo-900
+font-bold mb-3 flex items-center&quot;&gt;</p>
+
+<p class=MsoNormal>                        &lt;svg class=&quot;w-5 h-5
+mr-2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot;
+viewBox=&quot;0 0 24 24&quot;&gt;&lt;path stroke-linecap=&quot;round&quot;
+stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;id-13
+10V3L4 14h7v7l9-11h-7z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;</p>
+
+<p class=MsoNormal>                        Close the Gap</p>
+
+<p class=MsoNormal>                    &lt;/h3&gt;</p>
+
+<p class=MsoNormal>                    &lt;div id=&quot;suggestions-list&quot;
+class=&quot;space-y-3 text-sm&quot;&gt;</p>
+
+<p class=MsoNormal>                        &lt;/div&gt;</p>
+
+<p class=MsoNormal>                &lt;/div&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>                &lt;div id=&quot;search-container&quot;
+class=&quot;bg-white border border-slate-200 rounded-2xl shadow-sm sticky top-4
+overflow-hidden hidden&quot;&gt;</p>
+
+<p class=MsoNormal>                    &lt;div class=&quot;p-4 border-b
+border-slate-100 bg-slate-50 flex justify-between items-center&quot;&gt;</p>
+
+<p class=MsoNormal>                        &lt;h3 class=&quot;font-bold
+text-slate-800&quot;&gt;Add to &lt;span
+id=&quot;current-slot-label&quot;&gt;...&lt;/span&gt;&lt;/h3&gt;</p>
+
+<p class=MsoNormal>                        &lt;button
+onclick=&quot;closeSearch()&quot; class=&quot;text-slate-400
+hover:text-slate-600 text-xl&quot;&gt;&amp;times;&lt;/button&gt;</p>
+
+<p class=MsoNormal>                    &lt;/div&gt;</p>
+
+<p class=MsoNormal>                    &lt;div class=&quot;p-4&quot;&gt;</p>
+
+<p class=MsoNormal>                        &lt;input type=&quot;text&quot;
+id=&quot;food-search&quot; placeholder=&quot;Search protein foods...&quot;
+class=&quot;w-full p-2 border border-slate-200 rounded-lg mb-4 focus:ring-2
+focus:ring-indigo-500 outline-none&quot;&gt;</p>
+
+<p class=MsoNormal>                        &lt;div id=&quot;food-results&quot;
+class=&quot;max-height-[400px] overflow-y-auto space-y-2&quot;&gt;</p>
+
+<p class=MsoNormal>                            &lt;/div&gt;</p>
+
+<p class=MsoNormal>                    &lt;/div&gt;</p>
+
+<p class=MsoNormal>                &lt;/div&gt;</p>
+
+<p class=MsoNormal>            &lt;/div&gt;</p>
+
+<p class=MsoNormal>        &lt;/div&gt;</p>
+
+<p class=MsoNormal>    &lt;/div&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>    &lt;script&gt;</p>
+
+<p class=MsoNormal>        /**</p>
+
+<p class=MsoNormal>         * 1. DATA LAYER</p>
+
+<p class=MsoNormal>         * Curated Vegetarian/Pescatarian Database</p>
+
+<p class=MsoNormal>         */</p>
+
+<p class=MsoNormal>        const FOOD_DATABASE = [</p>
+
+<p class=MsoNormal>            { id: &quot;greek_yogurt&quot;, name:
+&quot;Greek Yogurt (2%)&quot;, serving_size: &quot;1 cup (245g)&quot;,
+protein_g: 20, category: &quot;dairy&quot;, diet_type: [&quot;vegetarian&quot;,
+&quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;cottage_cheese&quot;, name:
+&quot;Cottage Cheese (Low Fat)&quot;, serving_size: &quot;1 cup (225g)&quot;,
+protein_g: 28, category: &quot;dairy&quot;, diet_type: [&quot;vegetarian&quot;,
+&quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;egg_large&quot;, name: &quot;Large
+Egg&quot;, serving_size: &quot;1 egg (50g)&quot;, protein_g: 6, category:
+&quot;dairy&quot;, diet_type: [&quot;vegetarian&quot;, &quot;pescatarian&quot;]
+},</p>
+
+<p class=MsoNormal>            { id: &quot;tofu_firm&quot;, name: &quot;Extra
+Firm Tofu&quot;, serving_size: &quot;1/2 cup (126g)&quot;, protein_g: 10,
+category: &quot;legumes&quot;, diet_type: [&quot;vegetarian&quot;,
+&quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;tempeh&quot;, name:
+&quot;Tempeh&quot;, serving_size: &quot;3 oz (85g)&quot;, protein_g: 15,
+category: &quot;legumes&quot;, diet_type: [&quot;vegetarian&quot;,
+&quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;lentils_cooked&quot;, name:
+&quot;Lentils (Cooked)&quot;, serving_size: &quot;1 cup (198g)&quot;,
+protein_g: 18, category: &quot;legumes&quot;, diet_type:
+[&quot;vegetarian&quot;, &quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;edamame&quot;, name: &quot;Edamame
+(Shelled)&quot;, serving_size: &quot;1 cup (155g)&quot;, protein_g: 18,
+category: &quot;legumes&quot;, diet_type: [&quot;vegetarian&quot;,
+&quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;salmon_fillet&quot;, name:
+&quot;Salmon Fillet&quot;, serving_size: &quot;4 oz (113g)&quot;, protein_g:
+25, category: &quot;fish&quot;, diet_type: [&quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;tuna_canned&quot;, name:
+&quot;Canned Tuna (Water)&quot;, serving_size: &quot;1 can (142g)&quot;,
+protein_g: 32, category: &quot;fish&quot;, diet_type: [&quot;pescatarian&quot;]
+},</p>
+
+<p class=MsoNormal>            { id: &quot;shrimp_cooked&quot;, name:
+&quot;Shrimp (Cooked)&quot;, serving_size: &quot;3 oz (85g)&quot;, protein_g:
+20, category: &quot;fish&quot;, diet_type: [&quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;quinoa_cooked&quot;, name:
+&quot;Quinoa (Cooked)&quot;, serving_size: &quot;1 cup (185g)&quot;, protein_g:
+8, category: &quot;grains&quot;, diet_type: [&quot;vegetarian&quot;,
+&quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;whey_protein&quot;, name: &quot;Whey
+Protein Scoop&quot;, serving_size: &quot;1 scoop (30g)&quot;, protein_g: 24,
+category: &quot;supplements&quot;, diet_type: [&quot;vegetarian&quot;,
+&quot;pescatarian&quot;] },</p>
+
+<p class=MsoNormal>            { id: &quot;seitan&quot;, name:
+&quot;Seitan&quot;, serving_size: &quot;3 oz (85g)&quot;, protein_g: 21,
+category: &quot;legumes&quot;, diet_type: [&quot;vegetarian&quot;,
+&quot;pescatarian&quot;] }</p>
+
+<p class=MsoNormal>        ];</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        /**</p>
+
+<p class=MsoNormal>         * 2. STATE MANAGEMENT</p>
+
+<p class=MsoNormal>         */</p>
+
+<p class=MsoNormal>        let currentPlan = [</p>
+
+<p class=MsoNormal>            { id: 'breakfast', label: 'Breakfast', items: []
+},</p>
+
+<p class=MsoNormal>            { id: 'm_snack', label: 'Morning Snack', items:
+[] },</p>
+
+<p class=MsoNormal>            { id: 'lunch', label: 'Lunch', items: [] },</p>
+
+<p class=MsoNormal>            { id: 'a_snack', label: 'Afternoon Snack',
+items: [] },</p>
+
+<p class=MsoNormal>            { id: 'dinner', label: 'Dinner', items: [] }</p>
+
+<p class=MsoNormal>        ];</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        let activeSlotId = null;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        /**</p>
+
+<p class=MsoNormal>         * 3. CORE LOGIC</p>
+
+<p class=MsoNormal>         */</p>
+
+<p class=MsoNormal>        function calculateTotal() {</p>
+
+<p class=MsoNormal>            return currentPlan.reduce((total, slot) =&gt; {</p>
+
+<p class=MsoNormal>                return total + slot.items.reduce((slotTotal,
+item) =&gt; slotTotal + (item.protein_g * item.multiplier), 0);</p>
+
+<p class=MsoNormal>            }, 0);</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        function updateUI() {</p>
+
+<p class=MsoNormal>            const total = calculateTotal();</p>
+
+<p class=MsoNormal>            const targetMin = 80;</p>
+
+<p class=MsoNormal>            const targetMax = 100;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>            // Update Total Displays</p>
+
+<p class=MsoNormal>           
+document.getElementById('total-display').innerText = `${Math.round(total)}g`;</p>
+
+<p class=MsoNormal>            const bar =
+document.getElementById('progress-bar');</p>
+
+<p class=MsoNormal>            const status =
+document.getElementById('status-message');</p>
+
+<p class=MsoNormal>            </p>
+
+<p class=MsoNormal>            // Progress Bar Logic</p>
+
+<p class=MsoNormal>            const percentage = Math.min((total / targetMax)
+* 100, 100);</p>
+
+<p class=MsoNormal>            bar.style.width = `${percentage}%`;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>            if (total &lt; targetMin) {</p>
+
+<p class=MsoNormal>                bar.className = &quot;bg-yellow-400 h-full
+transition-all duration-500&quot;;</p>
+
+<p class=MsoNormal>                status.innerText = &quot;Under Target&quot;;</p>
+
+<p class=MsoNormal>                status.className = &quot;text-xs mt-2
+font-medium text-amber-500 uppercase tracking-wider text-center&quot;;</p>
+
+<p class=MsoNormal>                showGapSuggestions(total);</p>
+
+<p class=MsoNormal>            } else if (total &lt;= targetMax) {</p>
+
+<p class=MsoNormal>                bar.className = &quot;bg-green-500 h-full
+transition-all duration-500&quot;;</p>
+
+<p class=MsoNormal>                status.innerText = &quot;Goal Met! Perfect
+Range&quot;;</p>
+
+<p class=MsoNormal>                status.className = &quot;text-xs mt-2
+font-medium text-green-600 uppercase tracking-wider text-center&quot;;</p>
+
+<p class=MsoNormal>               
+document.getElementById('gap-panel').classList.add('hidden');</p>
+
+<p class=MsoNormal>            } else {</p>
+
+<p class=MsoNormal>                bar.className = &quot;bg-orange-500 h-full
+transition-all duration-500&quot;;</p>
+
+<p class=MsoNormal>                status.innerText = &quot;Over Target
+Range&quot;;</p>
+
+<p class=MsoNormal>                status.className = &quot;text-xs mt-2
+font-medium text-orange-500 uppercase tracking-wider text-center&quot;;</p>
+
+<p class=MsoNormal>               
+document.getElementById('gap-panel').classList.add('hidden');</p>
+
+<p class=MsoNormal>            }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>            renderSlots();</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        function renderSlots() {</p>
+
+<p class=MsoNormal>            const container =
+document.getElementById('meal-slots');</p>
+
+<p class=MsoNormal>            container.innerHTML = currentPlan.map(slot =&gt;
+`</p>
+
+<p class=MsoNormal>                &lt;div class=&quot;bg-white rounded-2xl
+border border-slate-200 shadow-sm overflow-hidden&quot;&gt;</p>
+
+<p class=MsoNormal>                    &lt;div class=&quot;p-4 border-b
+border-slate-50 flex justify-between items-center&quot;&gt;</p>
+
+<p class=MsoNormal>                        &lt;h4 class=&quot;font-bold
+text-slate-700&quot;&gt;${slot.label}&lt;/h4&gt;</p>
+
+<p class=MsoNormal>                        &lt;button
+onclick=&quot;openSearch('${slot.id}')&quot; class=&quot;text-xs font-bold
+text-indigo-600 hover:text-indigo-800 uppercase tracking-tighter
+cursor-pointer&quot;&gt;</p>
+
+<p class=MsoNormal>                            + Add Food</p>
+
+<p class=MsoNormal>                        &lt;/button&gt;</p>
+
+<p class=MsoNormal>                    &lt;/div&gt;</p>
+
+<p class=MsoNormal>                    &lt;div class=&quot;p-4
+space-y-3&quot;&gt;</p>
+
+<p class=MsoNormal>                        ${slot.items.length === 0 ? '&lt;p
+class=&quot;text-slate-400 text-sm italic&quot;&gt;No protein added
+yet&lt;/p&gt;' : ''}</p>
+
+<p class=MsoNormal>                        ${slot.items.map((item, idx) =&gt; `</p>
+
+<p class=MsoNormal>                            &lt;div class=&quot;flex
+items-center justify-between text-sm animate-in fade-in&quot;&gt;</p>
+
+<p class=MsoNormal>                                &lt;div
+class=&quot;flex-1&quot;&gt;</p>
+
+<p class=MsoNormal>                                    &lt;span
+class=&quot;font-semibold text-slate-800&quot;&gt;${item.name}&lt;/span&gt;</p>
+
+<p class=MsoNormal>                                    &lt;span
+class=&quot;text-slate-500 block
+text-xs&quot;&gt;${item.serving_size}&lt;/span&gt;</p>
+
+<p class=MsoNormal>                                &lt;/div&gt;</p>
+
+<p class=MsoNormal>                                &lt;div class=&quot;flex
+items-center gap-4&quot;&gt;</p>
+
+<p class=MsoNormal>                                    &lt;select
+onchange=&quot;updateMultiplier('${slot.id}', ${idx}, this.value)&quot;
+class=&quot;bg-slate-50 border border-slate-200 rounded p-1 text-xs&quot;&gt;</p>
+
+<p class=MsoNormal>                                        &lt;option
+value=&quot;0.5&quot; ${item.multiplier === 0.5 ? 'selected' :
+''}&gt;0.5x&lt;/option&gt;</p>
+
+<p class=MsoNormal>                                        &lt;option
+value=&quot;1&quot; ${item.multiplier === 1 ? 'selected' :
+''}&gt;1x&lt;/option&gt;</p>
+
+<p class=MsoNormal>                                        &lt;option
+value=&quot;1.5&quot; ${item.multiplier === 1.5 ? 'selected' :
+''}&gt;1.5x&lt;/option&gt;</p>
+
+<p class=MsoNormal>                                        &lt;option
+value=&quot;2&quot; ${item.multiplier === 2 ? 'selected' :
+''}&gt;2x&lt;/option&gt;</p>
+
+<p class=MsoNormal>                                    &lt;/select&gt;</p>
+
+<p class=MsoNormal>                                    &lt;span
+class=&quot;font-bold text-slate-700 w-8
+text-right&quot;&gt;${Math.round(item.protein_g *
+item.multiplier)}g&lt;/span&gt;</p>
+
+<p class=MsoNormal>                                    &lt;button
+onclick=&quot;removeItem('${slot.id}', ${idx})&quot; class=&quot;text-slate-300
+hover:text-red-500 px-1&quot;&gt;&amp;times;&lt;/button&gt;</p>
+
+<p class=MsoNormal>                                &lt;/div&gt;</p>
+
+<p class=MsoNormal>                            &lt;/div&gt;</p>
+
+<p class=MsoNormal>                        `).join('')}</p>
+
+<p class=MsoNormal>                    &lt;/div&gt;</p>
+
+<p class=MsoNormal>                &lt;/div&gt;</p>
+
+<p class=MsoNormal>            `).join('');</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        function showGapSuggestions(currentTotal) {</p>
+
+<p class=MsoNormal>            const gap = 80 - currentTotal;</p>
+
+<p class=MsoNormal>            const panel =
+document.getElementById('gap-panel');</p>
+
+<p class=MsoNormal>            const list =
+document.getElementById('suggestions-list');</p>
+
+<p class=MsoNormal>            </p>
+
+<p class=MsoNormal>            // Logic: Protein &gt;= 30% of gap, sorted by
+density</p>
+
+<p class=MsoNormal>            let suggestions = FOOD_DATABASE</p>
+
+<p class=MsoNormal>                .filter(f =&gt; f.protein_g &gt;= (gap *
+0.3))</p>
+
+<p class=MsoNormal>                .sort((a, b) =&gt; (b.protein_g) -
+(a.protein_g))</p>
+
+<p class=MsoNormal>                .slice(0, 3);</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>            if (suggestions.length &gt; 0) {</p>
+
+<p class=MsoNormal>                panel.classList.remove('hidden');</p>
+
+<p class=MsoNormal>                list.innerHTML = suggestions.map(f =&gt; `</p>
+
+<p class=MsoNormal>                    &lt;div class=&quot;bg-white p-3
+rounded-lg border border-indigo-100 flex justify-between items-center
+shadow-sm&quot;&gt;</p>
+
+<p class=MsoNormal>                        &lt;div&gt;</p>
+
+<p class=MsoNormal>                            &lt;p class=&quot;font-semibold
+text-indigo-900&quot;&gt;${f.name}&lt;/p&gt;</p>
+
+<p class=MsoNormal>                            &lt;p class=&quot;text-xs
+text-indigo-500&quot;&gt;+${f.protein_g}g protein&lt;/p&gt;</p>
+
+<p class=MsoNormal>                        &lt;/div&gt;</p>
+
+<p class=MsoNormal>                        &lt;button
+onclick=&quot;quickAdd('${f.id}')&quot; class=&quot;bg-indigo-600 text-white
+px-3 py-1 rounded text-xs font-bold hover:bg-indigo-700 transition&quot;&gt;</p>
+
+<p class=MsoNormal>                            Add</p>
+
+<p class=MsoNormal>                        &lt;/button&gt;</p>
+
+<p class=MsoNormal>                    &lt;/div&gt;</p>
+
+<p class=MsoNormal>                `).join('');</p>
+
+<p class=MsoNormal>            } else {</p>
+
+<p class=MsoNormal>                panel.classList.add('hidden');</p>
+
+<p class=MsoNormal>            }</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        /**</p>
+
+<p class=MsoNormal>         * 4. INTERACTION HANDLERS</p>
+
+<p class=MsoNormal>         */</p>
+
+<p class=MsoNormal>        function openSearch(slotId) {</p>
+
+<p class=MsoNormal>            activeSlotId = slotId;</p>
+
+<p class=MsoNormal>            const slot = currentPlan.find(s =&gt; s.id ===
+slotId);</p>
+
+<p class=MsoNormal>           
+document.getElementById('current-slot-label').innerText = slot.label;</p>
+
+<p class=MsoNormal>           
+document.getElementById('search-container').classList.remove('hidden');</p>
+
+<p class=MsoNormal>            renderSearchResults(&quot;&quot;);</p>
+
+<p class=MsoNormal>            document.getElementById('food-search').focus();</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        function closeSearch() {</p>
+
+<p class=MsoNormal>           
+document.getElementById('search-container').classList.add('hidden');</p>
+
+<p class=MsoNormal>            activeSlotId = null;</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        function renderSearchResults(query) {</p>
+
+<p class=MsoNormal>            const results = FOOD_DATABASE.filter(f =&gt; </p>
+
+<p class=MsoNormal>               
+f.name.toLowerCase().includes(query.toLowerCase()) || </p>
+
+<p class=MsoNormal>               
+f.category.toLowerCase().includes(query.toLowerCase())</p>
+
+<p class=MsoNormal>            );</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>           
+document.getElementById('food-results').innerHTML = results.map(f =&gt; `</p>
+
+<p class=MsoNormal>                &lt;button
+onclick=&quot;addFood('${f.id}')&quot; class=&quot;w-full text-left p-3
+hover:bg-indigo-50 rounded-xl border border-transparent hover:border-indigo-100
+transition-all flex justify-between items-center group&quot;&gt;</p>
+
+<p class=MsoNormal>                    &lt;div&gt;</p>
+
+<p class=MsoNormal>                        &lt;p class=&quot;font-medium
+text-slate-800&quot;&gt;${f.name}&lt;/p&gt;</p>
+
+<p class=MsoNormal>                        &lt;p class=&quot;text-xs
+text-slate-500&quot;&gt;${f.serving_size} • &lt;span
+class=&quot;capitalize&quot;&gt;${f.category}&lt;/span&gt;&lt;/p&gt;</p>
+
+<p class=MsoNormal>                    &lt;/div&gt;</p>
+
+<p class=MsoNormal>                    &lt;div class=&quot;text-right&quot;&gt;</p>
+
+<p class=MsoNormal>                        &lt;span class=&quot;font-bold
+text-indigo-600&quot;&gt;${f.protein_g}g&lt;/span&gt;</p>
+
+<p class=MsoNormal>                        &lt;span class=&quot;block
+text-[10px] text-slate-400 font-bold uppercase
+group-hover:text-indigo-400&quot;&gt;Select&lt;/span&gt;</p>
+
+<p class=MsoNormal>                    &lt;/div&gt;</p>
+
+<p class=MsoNormal>                &lt;/button&gt;</p>
+
+<p class=MsoNormal>            `).join('');</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        function addFood(foodId) {</p>
+
+<p class=MsoNormal>            if (!activeSlotId) return;</p>
+
+<p class=MsoNormal>            const food = FOOD_DATABASE.find(f =&gt; f.id ===
+foodId);</p>
+
+<p class=MsoNormal>            const slot = currentPlan.find(s =&gt; s.id ===
+activeSlotId);</p>
+
+<p class=MsoNormal>            </p>
+
+<p class=MsoNormal>            slot.items.push({ ...food, multiplier: 1 });</p>
+
+<p class=MsoNormal>            updateUI();</p>
+
+<p class=MsoNormal>            closeSearch();</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        function quickAdd(foodId) {</p>
+
+<p class=MsoNormal>            // Default to snack slots if they have fewer
+items, otherwise dinner</p>
+
+<p class=MsoNormal>            const food = FOOD_DATABASE.find(f =&gt; f.id ===
+foodId);</p>
+
+<p class=MsoNormal>            const targetSlot = currentPlan.find(s =&gt; s.id
+=== 'a_snack') || currentPlan[0];</p>
+
+<p class=MsoNormal>            targetSlot.items.push({ ...food, multiplier: 1
+});</p>
+
+<p class=MsoNormal>            updateUI();</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        function updateMultiplier(slotId, itemIndex, val) {</p>
+
+<p class=MsoNormal>            const slot = currentPlan.find(s =&gt; s.id ===
+slotId);</p>
+
+<p class=MsoNormal>            slot.items[itemIndex].multiplier =
+parseFloat(val);</p>
+
+<p class=MsoNormal>            updateUI();</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        function removeItem(slotId, itemIndex) {</p>
+
+<p class=MsoNormal>            const slot = currentPlan.find(s =&gt; s.id ===
+slotId);</p>
+
+<p class=MsoNormal>            slot.items.splice(itemIndex, 1);</p>
+
+<p class=MsoNormal>            updateUI();</p>
+
+<p class=MsoNormal>        }</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        // Search listener</p>
+
+<p class=MsoNormal>       
+document.getElementById('food-search').addEventListener('input', (e) =&gt; {</p>
+
+<p class=MsoNormal>            renderSearchResults(e.target.value);</p>
+
+<p class=MsoNormal>        });</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>        // Initialize</p>
+
+<p class=MsoNormal>        updateUI();</p>
+
+<p class=MsoNormal>    &lt;/script&gt;</p>
+
+<p class=MsoNormal>&lt;/body&gt;</p>
+
+<p class=MsoNormal>&lt;/html&gt;</p>
+
+</div>
+
+</body>
+
+</html>
