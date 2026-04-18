@@ -316,3 +316,342 @@ renderFoodList();
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Protein Meal Planner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #f5f7fa;
+}
+
+h1 { text-align: center; }
+
+.container { max-width: 1000px; margin: auto; }
+
+.meal-slot {
+  background: white;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+button {
+  padding: 5px 10px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.food-item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.progress {
+  height: 20px;
+  border-radius: 10px;
+  background: #ddd;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+}
+
+.green { background: #4caf50; }
+.yellow { background: #ffb300; }
+.orange { background: #f44336; }
+
+.panel {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+}
+
+.food-list {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+/* =========================
+   PRINT / PDF STYLING
+========================= */
+@media print {
+  button, input, select {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .panel {
+    border: none;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Protein Meal Planner</h1>
+
+<button onclick="exportPDF()">Export to PDF</button>
+
+<div class="panel">
+  <strong>Total Protein:</strong>
+  <span id="totalProtein">0</span>g (Target: 80–100g)
+
+  <div class="progress">
+    <div id="progressBar" class="progress-bar yellow" style="width:0%">0%</div>
+  </div>
+</div>
+
+<div id="mealSlots"></div>
+
+<div id="gapPanel" class="panel" style="display:none;">
+  <h3>Close the Gap</h3>
+  <div id="suggestions"></div>
+</div>
+
+<div class="panel">
+  <h3>Add Food</h3>
+  <select id="slotSelect"></select>
+  <input type="text" id="search" placeholder="Search food...">
+  <div id="foodList" class="food-list"></div>
+</div>
+
+</div>
+
+<script>
+/* =========================
+   EXPANDED FOOD DATABASE
+========================= */
+const foods = [
+  // Dairy & Eggs
+  {id:"greek_yogurt", name:"Greek Yogurt", protein:20},
+  {id:"cottage_cheese", name:"Cottage Cheese", protein:25},
+  {id:"eggs", name:"Eggs (2)", protein:12},
+  {id:"egg_whites", name:"Egg Whites (1 cup)", protein:26},
+  {id:"cheddar", name:"Cheddar Cheese", protein:7},
+  {id:"milk", name:"Milk (1 cup)", protein:8},
+
+  // Legumes & Plant Proteins
+  {id:"lentils", name:"Lentils", protein:18},
+  {id:"black_beans", name:"Black Beans", protein:15},
+  {id:"chickpeas", name:"Chickpeas", protein:15},
+  {id:"edamame", name:"Edamame", protein:17},
+  {id:"tofu", name:"Tofu", protein:20},
+  {id:"tempeh", name:"Tempeh", protein:21},
+
+  // Fish
+  {id:"salmon", name:"Salmon", protein:22},
+  {id:"tuna", name:"Tuna", protein:25},
+  {id:"shrimp", name:"Shrimp", protein:20},
+  {id:"cod", name:"Cod", protein:18},
+  {id:"sardines", name:"Sardines", protein:23},
+
+  // Grains & Seeds
+  {id:"quinoa", name:"Quinoa", protein:8},
+  {id:"chia", name:"Chia Seeds", protein:5},
+  {id:"hemp", name:"Hemp Seeds", protein:10},
+  {id:"oats", name:"Oats", protein:6},
+  {id:"brown_rice", name:"Brown Rice", protein:5},
+
+  // Nuts
+  {id:"almonds", name:"Almonds", protein:6},
+  {id:"peanut_butter", name:"Peanut Butter", protein:8},
+
+  // Supplements
+  {id:"whey", name:"Whey Protein", protein:24},
+  {id:"plant_protein", name:"Plant Protein Powder", protein:22}
+];
+
+/* =========================
+   STATE
+========================= */
+const slots = [
+  {id:"breakfast", label:"Breakfast", items:[]},
+  {id:"morning_snack", label:"Morning Snack", items:[]},
+  {id:"lunch", label:"Lunch", items:[]},
+  {id:"afternoon_snack", label:"Afternoon Snack", items:[]},
+  {id:"dinner", label:"Dinner", items:[]}
+];
+
+const mealSlotsDiv = document.getElementById("mealSlots");
+const slotSelect = document.getElementById("slotSelect");
+
+slots.forEach(slot => {
+  slotSelect.innerHTML += `<option value="${slot.id}">${slot.label}</option>`;
+});
+
+/* =========================
+   RENDER
+========================= */
+function renderSlots() {
+  mealSlotsDiv.innerHTML = "";
+
+  slots.forEach(slot => {
+    let div = document.createElement("div");
+    div.className = "meal-slot";
+
+    let html = `<strong>${slot.label}</strong>`;
+
+    slot.items.forEach((item, index) => {
+      html += `
+        <div class="food-item">
+          ${item.name} (${item.protein}g)
+          <button onclick="removeItem('${slot.id}', ${index})">X</button>
+        </div>
+      `;
+    });
+
+    div.innerHTML = html;
+    mealSlotsDiv.appendChild(div);
+  });
+
+  updateTotals();
+}
+
+/* =========================
+   ADD / REMOVE
+========================= */
+function addFood(foodId) {
+  const slot = slots.find(s => s.id === slotSelect.value);
+  const food = foods.find(f => f.id === foodId);
+  slot.items.push(food);
+  renderSlots();
+}
+
+function removeItem(slotId, index) {
+  const slot = slots.find(s => s.id === slotId);
+  slot.items.splice(index, 1);
+  renderSlots();
+}
+
+/* =========================
+   TOTAL
+========================= */
+function updateTotals() {
+  let total = 0;
+  slots.forEach(s => s.items.forEach(i => total += i.protein));
+
+  document.getElementById("totalProtein").innerText = total;
+  updateProgress(total);
+  updateGap(total);
+}
+
+/* =========================
+   PROGRESS
+========================= */
+function updateProgress(total) {
+  const bar = document.getElementById("progressBar");
+  let percent = Math.min((total / 100) * 100, 100);
+
+  bar.style.width = percent + "%";
+  bar.innerText = total + "g";
+
+  bar.className = "progress-bar";
+
+  if (total < 80) bar.classList.add("yellow");
+  else if (total <= 100) bar.classList.add("green");
+  else bar.classList.add("orange");
+}
+
+/* =========================
+   GAP SUGGESTIONS
+========================= */
+function updateGap(total) {
+  const panel = document.getElementById("gapPanel");
+  const suggestionsDiv = document.getElementById("suggestions");
+
+  if (total >= 80) {
+    panel.style.display = "none";
+    return;
+  }
+
+  panel.style.display = "block";
+
+  const gap = 80 - total;
+
+  const suggestions = foods
+    .filter(f => f.protein >= gap * 0.3)
+    .sort((a,b) => b.protein - a.protein)
+    .slice(0,3);
+
+  suggestionsDiv.innerHTML = "";
+
+  suggestions.forEach(f => {
+    suggestionsDiv.innerHTML += `
+      <div>
+        ${f.name} (${f.protein}g)
+        <button onclick="quickAdd('${f.id}')">Add</button>
+      </div>
+    `;
+  });
+}
+
+function quickAdd(foodId) {
+  const snack = slots.find(s => s.id.includes("snack"));
+  snack.items.push(foods.find(f => f.id === foodId));
+  renderSlots();
+}
+
+/* =========================
+   SEARCH
+========================= */
+const foodListDiv = document.getElementById("foodList");
+const searchInput = document.getElementById("search");
+
+function renderFoodList() {
+  const query = searchInput.value.toLowerCase();
+
+  foodListDiv.innerHTML = "";
+
+  foods
+    .filter(f => f.name.toLowerCase().includes(query))
+    .forEach(f => {
+      foodListDiv.innerHTML += `
+        <div>
+          ${f.name} (${f.protein}g)
+          <button onclick="addFood('${f.id}')">Add</button>
+        </div>
+      `;
+    });
+}
+
+searchInput.addEventListener("input", renderFoodList);
+
+/* =========================
+   EXPORT PDF
+========================= */
+function exportPDF() {
+  window.print();
+}
+
+/* =========================
+   INIT
+========================= */
+renderSlots();
+renderFoodList();
+
+</script>
+</body>
+</html>
